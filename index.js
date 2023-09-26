@@ -107,6 +107,8 @@ app.post("/verify-otp", async (req, res) => {
 
   const actualOtp = await db.get(getOtpQuery);
 
+  console.log(actualOtp);
+
   const deleteOtpQuery = `
     DELETE FROM 
         otps 
