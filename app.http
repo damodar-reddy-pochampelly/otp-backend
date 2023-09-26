@@ -2,7 +2,7 @@ POST http://localhost:3000/generate-otp/
 Content-Type: application/json 
 
 {
-    "mobileNumber" : "+918919219019"
+    "mobileNumber" : "+918106688607"
 }
 
 ###

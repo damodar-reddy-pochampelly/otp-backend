@@ -59,7 +59,7 @@ app.post("/generate-otp", async (req, res) => {
     return res.status(400).json({ error: "Invalid mobile number" });
   }
 
-  const otp = Math.floor(100000 + Math.random() * 900000).toString(); // Generate a 6-digit OTP
+  const otp = Math.floor(1000 + Math.random() * 9000).toString(); // Generate a 6-digit OTP
 
   // Store the OTP (replace this with database storage)
   //otpStorage[mobileNumber] = otp;
@@ -87,7 +87,7 @@ app.post("/generate-otp", async (req, res) => {
 app.post("/verify-otp", async (req, res) => {
   const { mobileNumber, otp } = req.body;
 
-  if (!mobileNumber || !otp || !/^\d{6}$/.test(otp)) {
+  if (!mobileNumber || !otp || !/^\d{4}$/.test(otp)) {
     return res.status(400).json({ error: "Invalid OTP or mobile number" });
   }
 
