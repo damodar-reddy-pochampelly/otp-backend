@@ -1,0 +1,17 @@
+POST http://localhost:3000/generate-otp/
+Content-Type: application/json 
+
+{
+    "mobileNumber" : "+918919219019"
+}
+
+###
+
+
+POST http://localhost:3000/verify-otp/ 
+Content-Type: application/json 
+
+{
+    "mobileNumber" : "+918919219019",
+    "otp" : "219939"
+}
