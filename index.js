@@ -13,6 +13,8 @@ app.use(express.json());
 
 app.use(cors());
 
+const PORT = process.env.PORT || 3000;
+
 const dbPath = path.join(__dirname, "otp_database.db");
 
 let db = null;
@@ -23,7 +25,7 @@ const initializeDBAndServer = async () => {
       driver: sqlite3.Database,
     });
 
-    app.listen(3000, () => {
+    app.listen(PORT, () => {
       console.log("Server Running at http://localhost:3000/");
     });
   } catch (e) {
