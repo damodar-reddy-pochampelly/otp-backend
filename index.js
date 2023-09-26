@@ -42,7 +42,7 @@ const TWILIO_PHONE_NUMBER = process.env.TWILIO_PHONE_NUMBER;
 
 const client = twilio(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN);
 
-// Generate and send OTP via Twilio
+// Generate and send OTP via Twilio, Twilio will generate OTP to only mobile numbers that are verified through Twilio.
 function sendOTPviaTwilio(mobileNumber, otp) {
   return client.messages.create({
     body: `Your OTP is: ${otp}`,
@@ -60,9 +60,6 @@ app.post("/generate-otp", async (req, res) => {
   }
 
   const otp = Math.floor(1000 + Math.random() * 9000).toString(); // Generate a 6-digit OTP
-
-  // Store the OTP (replace this with database storage)
-  //otpStorage[mobileNumber] = otp;
 
   const addOtpQuery = `
     INSERT INTO 
@@ -90,11 +87,6 @@ app.post("/verify-otp", async (req, res) => {
   if (!mobileNumber || !otp || !/^\d{4}$/.test(otp)) {
     return res.status(400).json({ error: "Invalid OTP or mobile number" });
   }
-
-  // Check if OTP exists for the provided mobile number
-  //   if (!otpStorage[mobileNumber]) {
-  //     return res.status(400).json({ error: "OTP not found" });
-  //   }
 
   const getOtpQuery = `
     SELECT 
